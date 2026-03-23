@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akshara Vidya | Код Мироздания</title>
+    <title>SANSKRIT: 50 Ключей Мироздания</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #d4af37;
             --deep: #050505;
-            --text: #f0f0f0;
+            --text: #e0e0e0;
             --glow: rgba(212, 175, 55, 0.4);
-            --glass: rgba(255, 255, 255, 0.03);
         }
 
         body, html {
@@ -20,133 +19,314 @@
             color: var(--text);
             font-family: 'Playfair Display', serif;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        canvas { position: fixed; top: 0; left: 0; z-index: 0; opacity: 0.25; pointer-events: none; }
+        canvas { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%;
+            height: 100%;
+            z-index: 0; 
+            pointer-events: none;
+        }
 
         /* Навигация */
         nav {
-            position: fixed; top: 0; width: 100%; height: 70px;
-            display: flex; justify-content: center; align-items: center;
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(15px);
-            z-index: 100; border-bottom: 1px solid var(--glow); gap: 30px;
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 60px;
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            background: rgba(0,0,0,0.85); 
+            backdrop-filter: blur(10px);
+            z-index: 100; 
+            border-top: 1px solid var(--glow); 
+            gap: 25px;
         }
 
         nav a {
-            color: var(--gold); text-decoration: none; text-transform: uppercase;
-            font-size: 0.75rem; letter-spacing: 3px; cursor: pointer; transition: 0.4s;
+            color: var(--gold); 
+            text-decoration: none; 
+            text-transform: uppercase;
+            font-size: 0.7rem; 
+            letter-spacing: 2px; 
+            cursor: pointer; 
+            transition: 0.3s;
             opacity: 0.6;
         }
 
-        nav a:hover, nav a.active { opacity: 1; text-shadow: 0 0 15px var(--gold); }
+        nav a:hover, nav a.active { 
+            opacity: 1; 
+            text-shadow: 0 0 10px var(--gold); 
+        }
 
         /* Экраны */
         .screen {
-            min-height: 100vh; width: 100%; display: none;
-            position: relative; z-index: 1; padding: 120px 20px 60px; box-sizing: border-box;
-            flex-direction: column; align-items: center;
+            min-height: 100vh; 
+            width: 100%; 
+            display: none;
+            position: relative; 
+            z-index: 1; 
+            padding: 100px 20px 80px; 
+            box-sizing: border-box;
+            flex-direction: column; 
+            align-items: center;
         }
 
-        .active { display: flex; animation: fadeIn 1.2s ease; }
+        .active { 
+            display: flex; 
+            animation: fadeIn 1s ease; 
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
 
-        /* Карточка Акшары */
-        .card { text-align: center; max-width: 900px; width: 100%; }
+        /* Карточка */
+        .card { 
+            text-align: center; 
+            max-width: 900px; 
+            width: 100%; 
+            background: rgba(5,5,5,0.5);
+            backdrop-filter: blur(2px);
+            border-radius: 40px;
+            padding: 30px 20px;
+        }
 
         .akshara-hero {
             font-family: 'Tiro Devanagari Sanskrit', serif;
-            font-size: clamp(8rem, 22vw, 15rem);
-            margin: 0; color: #fff;
-            text-shadow: 0 0 50px var(--glow);
+            font-size: clamp(8rem, 20vw, 14rem);
+            margin: 0; 
+            color: var(--text);
+            text-shadow: 0 0 40px var(--glow);
             line-height: 1.1;
         }
 
-        .pronun { font-size: 1.6rem; color: var(--gold); margin-top: -20px; font-style: italic; letter-spacing: 6px; }
+        .pronun { 
+            font-size: 1.5rem; 
+            color: var(--gold); 
+            margin-top: -15px; 
+            font-style: italic; 
+            letter-spacing: 5px; 
+        }
 
         .poem-box {
-            margin: 40px 0; font-size: 1.3rem; font-style: italic;
-            color: #fff; line-height: 1.8; max-width: 750px;
-            margin-left: auto; margin-right: auto;
-            border-left: 1px solid var(--gold); border-right: 1px solid var(--gold);
-            padding: 20px 30px; background: var(--glass);
+            margin: 30px 0; 
+            font-size: 1.4rem; 
+            font-style: italic;
+            color: #fff; 
+            line-height: 1.6; 
+            max-width: 700px;
+            margin-left: auto; 
+            margin-right: auto;
+            border-left: 1px solid var(--gold); 
+            border-right: 1px solid var(--gold);
+            padding: 0 20px;
         }
 
         .grid-info {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 40px;
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px; 
+            margin-top: 40px;
         }
 
         .info-card {
-            background: var(--glass); padding: 30px;
-            border: 1px solid rgba(212,175,55,0.1); text-align: left;
-            backdrop-filter: blur(5px);
+            background: rgba(255,255,255,0.02); 
+            padding: 25px;
+            border: 1px solid rgba(212,175,55,0.1); 
+            text-align: left;
+            border-radius: 20px;
         }
 
-        .info-card h3 { color: var(--gold); margin-top: 0; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
+        .info-card h3 { 
+            color: var(--gold); 
+            margin-top: 0; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+        }
 
         .cosmo-long {
-            margin-top: 50px; padding: 40px; border-top: 1px solid var(--glow);
-            font-size: 1.2rem; line-height: 1.9; color: #ccc; text-align: center;
+            margin-top: 40px; 
+            padding-top: 30px; 
+            border-top: 1px solid var(--glow);
+            font-size: 1.15rem; 
+            line-height: 1.8; 
+            color: #bbb;
         }
 
         /* Библиотека */
         .lib-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 20px; width: 100%; max-width: 1200px;
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 15px; 
+            width: 100%; 
+            max-width: 1100px;
         }
 
         .lib-item {
-            background: var(--glass); border: 1px solid rgba(212,175,55,0.1);
-            padding: 30px 10px; cursor: pointer; transition: 0.4s; text-align: center;
-        }
-
-        .lib-item:hover { background: var(--gold); transform: translateY(-5px); }
-        .lib-item:hover * { color: #000; }
-        .lib-item .char { font-family: 'Tiro Devanagari Sanskrit'; font-size: 3rem; display: block; }
-
-        /* Кнопки */
-        .btns { display: flex; gap: 30px; margin-top: 60px; }
-        button {
-            background: transparent; border: 1px solid var(--gold); color: var(--gold);
-            padding: 15px 40px; cursor: pointer; text-transform: uppercase; letter-spacing: 3px;
-            font-family: inherit; transition: 0.3s; font-size: 0.9rem;
-        }
-        button:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px var(--glow); }
-
-        /* Подвал с благодарностью */
-        footer {
-            margin-top: 100px;
-            padding: 40px 20px;
+            background: rgba(255,255,255,0.02); 
+            border: 1px solid rgba(212,175,55,0.1);
+            padding: 20px 10px; 
+            cursor: pointer; 
+            transition: 0.3s; 
             text-align: center;
-            border-top: 1px solid var(--glow);
+            border-radius: 20px;
+        }
+
+        .lib-item:hover { 
+            background: var(--gold); 
+        }
+        .lib-item:hover * { 
+            color: #000; 
+        }
+        .lib-item .char { 
+            font-family: 'Tiro Devanagari Sanskrit'; 
+            font-size: 2.5rem; 
+            display: block; 
+        }
+        .lib-item .rus { 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            margin-top: 5px; 
+        }
+
+        .btns { 
+            display: flex; 
+            gap: 20px; 
+            margin-top: 50px; 
+            justify-content: center;
+        }
+        button {
+            background: transparent; 
+            border: 1px solid var(--gold); 
+            color: var(--gold);
+            padding: 12px 30px; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            font-family: inherit; 
+            transition: 0.3s;
+            border-radius: 40px;
+        }
+        button:hover { 
+            background: var(--gold); 
+            color: #000; 
+        }
+
+        .progress-line { 
+            position: fixed; 
+            bottom: 60px; 
+            left: 0; 
+            height: 3px; 
+            background: var(--gold); 
+            transition: 0.4s; 
+            z-index: 1000; 
+        }
+        
+        /* Верхний блок — изящная ссылка с посланием */
+        .sacred-header {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 2;
+            z-index: 150;
+            background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(5,5,5,0.85) 100%);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212,175,55,0.3);
+            padding: 12px 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
         }
-
-        .support-msg {
-            color: #888; font-size: 1rem; letter-spacing: 1px; margin-bottom: 15px;
+        
+        .support-message {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(212,175,55,0.08);
+            padding: 6px 18px;
+            border-radius: 40px;
+            border-right: 2px solid var(--gold);
+            border-left: 1px solid rgba(212,175,55,0.3);
         }
-
-        .support-link {
+        
+        .support-message .blessing-text {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            color: #ccb977;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+        
+        .support-message a {
             color: var(--gold);
             text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border: 1px solid var(--gold);
-            padding: 10px 25px;
-            transition: 0.4s;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .support-message a:hover {
+            color: #ffea9e;
+            text-shadow: 0 0 6px rgba(212,175,55,0.6);
+        }
+        
+        .telegram-icon {
             display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: currentColor;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.6-1.38-.97-2.23-1.56-.99-.69-.35-1.07.22-1.69.15-.15 2.77-2.54 2.82-2.76.01-.03.02-.13-.06-.19-.08-.06-.2-.04-.29-.02-.13.03-2.18 1.38-6.15 4.06-.58.4-1.11.59-1.58.58-.52-.01-1.52-.29-2.26-.53-.9-.29-1.62-.44-1.56-.93.03-.26.39-.52 1.07-.79 4.2-1.83 7-3.04 8.4-3.62 4-1.66 4.83-1.95 5.37-1.96.12 0 .38.03.55.18.14.13.18.3.2.47.02.14.02.31-.01.5z'/%3E%3C/svg%3E") no-repeat center;
+            mask-size: contain;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.6-1.38-.97-2.23-1.56-.99-.69-.35-1.07.22-1.69.15-.15 2.77-2.54 2.82-2.76.01-.03.02-.13-.06-.19-.08-.06-.2-.04-.29-.02-.13.03-2.18 1.38-6.15 4.06-.58.4-1.11.59-1.58.58-.52-.01-1.52-.29-2.26-.53-.9-.29-1.62-.44-1.56-.93.03-.26.39-.52 1.07-.79 4.2-1.83 7-3.04 8.4-3.62 4-1.66 4.83-1.95 5.37-1.96.12 0 .38.03.55.18.14.13.18.3.2.47.02.14.02.31-.01.5z'/%3E%3C/svg%3E") no-repeat center;
+            -webkit-mask-size: contain;
+            background-color: currentColor;
         }
-
-        .support-link:hover {
-            background: var(--gold);
-            color: #000;
+        
+        .grace-note {
+            font-size: 0.65rem;
+            color: #aa9966;
+            margin-left: 5px;
+            letter-spacing: 0.3px;
         }
-
-        .progress-line { position: fixed; bottom: 0; left: 0; height: 4px; background: var(--gold); transition: 0.5s; z-index: 1000; }
-
+        
+        @media (max-width: 700px) {
+            .sacred-header { padding: 8px 15px; justify-content: center; }
+            .support-message { padding: 4px 12px; }
+            .support-message .blessing-text { font-size: 0.6rem; }
+            .support-message a { font-size: 0.7rem; }
+            .grace-note { display: none; }
+            .card { padding: 20px 15px; }
+        }
+        
+        /* Декоративный элемент для гармонии */
+        .header-lotus {
+            position: absolute;
+            left: 20px;
+            font-size: 1rem;
+            opacity: 0.5;
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+        @media (max-width: 550px) {
+            .header-lotus { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -154,27 +334,42 @@
     <canvas id="sacred-canvas"></canvas>
     <div id="p-bar" class="progress-line" style="width: 0%"></div>
 
+    <!-- Верхний блок: элегантное послание и ссылка -->
+    <div class="sacred-header">
+        <div class="header-lotus">ॐ</div>
+        <div class="support-message">
+            <span class="blessing-text">✧ благословение пути ✧</span>
+            <a href="https://t.me/samarthsammasati_exclusive_bot?start=1084517233" target="_blank" rel="noopener noreferrer">
+                <span class="telegram-icon"></span> СаМарт Саммасати
+            </a>
+            <span class="grace-note">• приложение создано при поддержке наставника •</span>
+        </div>
+    </div>
+
     <nav>
         <a onclick="setMode('oracle')" id="n-oracle">Оракул</a>
-        <a onclick="setMode('path')" id="n-path">Путь Творения (50)</a>
+        <a onclick="setMode('path')" id="n-path">Путь (50 букв)</a>
         <a onclick="setMode('library')" id="n-library">Библиотека</a>
     </nav>
 
     <div id="view-main" class="screen active">
         <div class="card">
-            <div id="step-name" style="color:var(--gold); letter-spacing: 7px; margin-bottom: 10px; text-transform: uppercase;"></div>
+            <div id="step-name" style="color:var(--gold); letter-spacing: 5px; margin-bottom: 10px;"></div>
             <h1 id="char" class="akshara-hero">अ</h1>
             <div id="rus" class="pronun">[ А ]</div>
 
-            <div id="poem" class="poem-box"></div>
+            <div id="poem" class="poem-box">
+                Ясный свет истока в сердце пробуди,<br>
+                Или в пустоте гордыни правду не ищи.
+            </div>
 
             <div class="grid-info">
                 <div class="info-card">
-                    <h3>Свет (Сила проявления)</h3>
+                    <h3>Свет (Дар)</h3>
                     <p id="light"></p>
                 </div>
                 <div class="info-card">
-                    <h3>Тень (Урок Майи)</h3>
+                    <h3>Тень (Урок)</h3>
                     <p id="shadow"></p>
                 </div>
             </div>
@@ -183,191 +378,39 @@
 
             <div class="btns">
                 <button id="b-prev" onclick="move(-1)">← Назад</button>
-                <button id="b-rand" onclick="randomize()">Вопрошать Небо</button>
+                <button id="b-rand" onclick="randomize()">Призвать</button>
                 <button id="b-next" onclick="move(1)">Далее →</button>
             </div>
         </div>
-
-        <footer>
-            <p class="support-msg">Это приложение создано для познания глубин бытия при поддержке</p>
-            <a href="https://t.me/samarthsammasati_exclusive_bot?start=1084517233" target="_blank" class="support-link">
-                саМарт Саммасати
-            </a>
-        </footer>
     </div>
 
     <div id="view-lib" class="screen">
-        <h2 style="color:var(--gold); letter-spacing: 8px; text-transform: uppercase; margin-bottom: 50px;">Гирлянда 50 Матрик</h2>
+        <h2 style="color:var(--gold); letter-spacing: 5px;">ВСЯ ГИРЛЯНДА АКШАР</h2>
         <div class="lib-grid" id="lib-grid"></div>
     </div>
 
     <script>
-        const alphabet = [
-            {
-                char: "अ", rus: "А", stage: "Исток Сознания",
-                poem: "Ясный свет истока в сердце пробуди — <br>Или в пустоте гордыни правду не ищи.",
-                light: "Абсолютное присутствие, момент 'Я Есмь', чистое осознание начала.",
-                shadow: "Духовная спячка, отрицание божественного корня, высокомерие разума.",
-                cosmo: "Буква 'А' — это Пара-Брахман. Беззвучный звук, скрытый в каждом вдохе. С неё начинается развертывание времени."
-            },
-            {
-                char: "आ", rus: "АА", stage: "Сила Блаженства",
-                poem: "Благодатью мира душу напитай — <br>Или в жажде страсти искру потеряй.",
-                light: "Ананда-шакти: бесконечное расширение радости и любви.",
-                shadow: "Потеря границ, привязанность к чувственным наслаждениям, жадность.",
-                cosmo: "Долгая 'А' — это осознание Сознанием своей красоты. Это выдох, создающий пространство для миров."
-            },
-            {
-                char: "इ", rus: "И", stage: "Импульс Воли",
-                poem: "Воли острый луч направит к небесам — <br>Или мелочность разрушит веру сам.",
-                light: "Иччха-шакти: энергия чистого намерения и целеустремленности.",
-                shadow: "Хаос в желаниях, коварство, использование силы воли во вред другим.",
-                cosmo: "Буква 'И' — это тонкое движение, искра, заставляющая сознание действовать. Это зарождение эволюции."
-            },
-            {
-                char: "उ", rus: "У", stage: "Океан Знания",
-                poem: "Знания поток в состраданье обрати — <br>Или грузом слов застрянешь ты в пути.",
-                light: "Джнана-шакти: накопление глубокой мудрости и внутреннего ресурса.",
-                shadow: "Интеллектуальный застой, утаивание истины, тяжесть неиспользуемых знаний.",
-                cosmo: "Звук 'У' — это накопление потенциала внутри Вселенной. Формирование глубинных смыслов."
-            },
-            {
-                char: "क", rus: "КА", stage: "Первый Элемент",
-                poem: "В пустоте найди созвездия миров — <br>Или страх запрёт тебя на сто замков.",
-                light: "Творческий прорыв, способность создавать форму в пустоте эфира.",
-                shadow: "Творческий кризис, страх перед неизвестным, жесткие ограничения.",
-                cosmo: "Буква 'Ка' — это сияние Акаши (Эфира). Первый согласный звук, дающий начало материальному миру."
-            },
-            {
-                char: "म", rus: "МА", stage: "Предел Материи",
-                poem: "Мир в объятьях материнских упокой — <br>Или в бездну праха упади душой.",
-                light: "Завершение формы, материнская забота, умение доводить всё до конца.",
-                shadow: "Смерть как конец, оцепенение, чрезмерная привязанность к телу.",
-                cosmo: "Звук смыкания губ. Творение полностью проявлено и достигло своего предела. Покой материи."
-            },
-            {
-                char: "ह", rus: "ХА", stage: "Дыхание Свободы",
-                poem: "Выдохни себя и богом стань на миг — <br>Или в страхе смерти преврати всё в крик.",
-                light: "Шива-шакти: полное освобождение, растворение эго, возвращение к истоку.",
-                shadow: "Потеря жизненной силы, удушье эго, страх перед трансформацией.",
-                cosmo: "Звук выдоха. Возвращение всех проявленных форм обратно в пустоту буквы 'А'."
-            },
-            {
-                char: "क्ष", rus: "КША", stage: "Великий Синтез",
-                poem: "Всё прости и в вечности безмолвно растворись — <br>Или за обломки прошлого держись.",
-                light: "Кшама (Всепрощение). Высшее знание, объединяющее начало и конец.",
-                shadow: "Крах иллюзий, болезненный разрыв с прошлым, непонимание циклов.",
-                cosmo: "Соединение 'Ка' (материя) и 'Ша' (покой). Финальный аккорд алфавита, венчающий познание Вселенной."
-            }
-            // Здесь добавлены ключевые буквы. Массив можно расширять до 50 по тому же шаблону.
-        ];
-
-        let index = 0;
-        let mode = 'oracle';
-
-        function setMode(m) {
-            mode = m;
-            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-            document.getElementById('n-' + m).classList.add('active');
-            
-            if(m === 'library') {
-                document.getElementById('view-main').style.display = 'none';
-                document.getElementById('view-lib').style.display = 'flex';
-                renderLib();
-            } else {
-                document.getElementById('view-main').style.display = 'flex';
-                document.getElementById('view-lib').style.display = 'none';
-                updateNav();
-            }
-        }
-
-        function updateNav() {
-            const isP = (mode === 'path');
-            document.getElementById('b-prev').style.display = isP ? 'block' : 'none';
-            document.getElementById('b-next').style.display = isP ? 'block' : 'none';
-            document.getElementById('b-rand').style.display = isP ? 'none' : 'block';
-            render();
-        }
-
-        function render() {
-            const item = alphabet[index];
-            const charEl = document.getElementById('char');
-            charEl.style.opacity = 0;
-            charEl.style.transform = 'scale(0.9)';
-            
-            setTimeout(() => {
-                charEl.textContent = item.char;
-                document.getElementById('rus').textContent = `[ ${item.rus} ]`;
-                document.getElementById('step-name').textContent = item.stage;
-                document.getElementById('poem').innerHTML = item.poem;
-                document.getElementById('light').textContent = item.light;
-                document.getElementById('shadow').textContent = item.shadow;
-                document.getElementById('cosmo').textContent = item.cosmo;
-                
-                charEl.style.opacity = 1;
-                charEl.style.transform = 'scale(1)';
-                document.getElementById('p-bar').style.width = ((index+1)/alphabet.length)*100 + "%";
-            }, 400);
-        }
-
-        function move(d) {
-            index = (index + d + alphabet.length) % alphabet.length;
-            render();
-        }
-
-        function randomize() {
-            index = Math.floor(Math.random() * alphabet.length);
-            render();
-        }
-
-        function renderLib() {
-            const g = document.getElementById('lib-grid');
-            g.innerHTML = '';
-            alphabet.forEach((d, i) => {
-                const el = document.createElement('div');
-                el.className = 'lib-item';
-                el.innerHTML = `<span class="char">${d.char}</span><span style="font-size:0.8rem">${d.rus}</span>`;
-                el.onclick = () => { index = i; setMode('path'); };
-                g.appendChild(el);
-            });
-        }
-
-        // Анимация Сакральной Геометрии
-        const canvas = document.getElementById('sacred-canvas');
-        const ctx = canvas.getContext('2d');
-        function draw() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            const t = Date.now() * 0.0003;
-            ctx.clearRect(0,0,canvas.width, canvas.height);
-            ctx.strokeStyle = '#d4af37';
-            ctx.lineWidth = 0.4;
-            ctx.translate(canvas.width/2, canvas.height/2);
-            
-            for(let i=0; i<12; i++) {
-                ctx.rotate(Math.PI / 6);
-                ctx.save();
-                ctx.rotate(t);
-                ctx.beginPath();
-                ctx.arc(100, 0, 80, 0, Math.PI * 2);
-                ctx.stroke();
-                
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.lineTo(200, 0);
-                ctx.stroke();
-                ctx.restore();
-            }
-            requestAnimationFrame(draw);
-        }
-        
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        draw();
-        updateNav();
-    </script>
-</body>
-</html>
+        // Полные 50 ключей мироздания (50 сакральных звуков)
+        const data = [
+            { char: "अ", rus: "А", stage: "Пробуждение", poem: "Ясный свет истока в сердце пробуди, / Или в пустоте гордыни правду не ищи.", light: "Чистое сознание, начало пути, осознание своего 'Я ЕСТЬ'.", shadow: "Духовный сон, отрицание основ, высокомерие разума.", cosmo: "Буква 'А' — это корень Вселенной. Из неё рождаются все звуки и все миры. Это символ Абсолюта (Брахмана), пребывающего в тишине." },
+            { char: "आ", rus: "АА", stage: "Расширение", poem: "Благодатью мира душу напитай, / Или в жажде страсти искру потеряй.", light: "Ананда (Блаженство), расширение внутреннего пространства, радость бытия.", shadow: "Привязанность к наслаждениям, жадность до эмоций, распыление сил.", cosmo: "Долгая 'А' — это энергия радости, которая заставляет мир множиться и цвести. Это вдох Творца." },
+            { char: "इ", rus: "И", stage: "Намерение", light: "Острая воля, направленный интеллект, чистое стремление.", shadow: "Интриги, мелочность, хаос в желаниях.", poem: "Воли острый луч направит к небесам, / Или мелочность разрушит веру сам.", cosmo: "Звук 'И' — это Иччха-шакти, энергия воли. Без неё материя остается мертвой и неподвижной." },
+            { char: "ई", rus: "ИИ", stage: "Мощь", light: "Божественное величие, власть над своими чувствами, достоинство.", shadow: "Тирания, подавление других, холодность сердца.", poem: "Власть над чувствами — великий твой венец, / Или гордый холод — близости конец.", cosmo: "Долгая 'И' — это Ишвара, Господь проявленного мира, удерживающий гармонию планет." },
+            { char: "उ", rus: "У", stage: "Мудрость", light: "Накопление знаний, внутренний ресурс, сострадание.", shadow: "Тяжесть, интеллектуальный застой, утаивание правды.", poem: "Знания поток в состраданье обрати, / Или грузом слов застрянешь ты в пути.", cosmo: "Звук 'У' — это накопление потенциала. Это таинственная глубина океана, хранящая жемчужины опыта." },
+            { char: "ऊ", rus: "УУ", stage: "Восхождение", light: "Духовный подъем, преодоление инерции, вертикальный рост.", shadow: "Отрыв от корней, фанатизм, иллюзия святости.", poem: "Ввысь лети душой, оковы разорвав, / Или упадешь, корней своих не знав.", cosmo: "Долгая 'У' — сила 'Урдхва', влекущая всё живое вверх, к свету Солнца истины." },
+            { char: "ऋ", rus: "РИ", stage: "Порядок", light: "Рита — космический закон, праведность, естественность.", shadow: "Ритуализм без веры, сухость, слепое следование буквам.", poem: "Правды ритм звучит в дыхании твоем, / Или станешь ты лишь прахом и сухим пнем.", cosmo: "Этот звук устанавливает законы природы: движение звезд и смену сезонов." },
+            { char: "ॠ", rus: "РИИ", stage: "Цикличность", light: "Глубинная мудрость циклов, перерождение духа.", shadow: "Зацикленность на прошлом, страх перемен.", poem: "В круге вечном тайну обрети, / Или в прошлом память обрети.", cosmo: "Сила повторения, кармические узоры, вращение времени." },
+            { char: "ऌ", rus: "ЛИ", stage: "Растворение", light: "Нежность, слияние с божественным, музыка сфер.", shadow: "Потеря себя в сладости, бесхарактерность.", poem: "Мягкость растворения в любви найди, / Или в сладкой неге себя погуби.", cosmo: "Звук притяжения душ, мистическое единение." },
+            { char: "ए", rus: "Э", stage: "Творение", light: "Творческий союз, способность объединять идеи в форму.", shadow: "Рассеянность, неспособность выбрать одно, суета.", poem: "Свяжет мысль и дело золотая нить, / Или будешь в грезах призраками жить.", cosmo: "Звук синтеза Сознания и Воли. Первый шаг к материализации мечты." },
+            { char: "ऐ", rus: "АИ", stage: "Слияние", light: "Союз противоположностей, священный брак.", shadow: "Двойственность, раздвоенность, внутренний конфликт.", poem: "Два в одно сольются в вышине, / Иль раздор поселится в тебе.", cosmo: "Союз Шивы и Шакти, порождающий вселенную." },
+            { char: "ओ", rus: "О", stage: "Целостность", light: "Гармония, завершенность, союз Неба и Земли.", shadow: "Самодовольство, остановка в развитии, гордыня финиша.", poem: "Мир в тебе един, как капля в океане, / Или сгинет свет в самодовольства тумане.", cosmo: "Звук ОМ в его срединной стадии. Наполнение пространства божественным присутствием." },
+            { char: "औ", rus: "АУ", stage: "Сияние", light: "Божественный свет, благодать, величие.", shadow: "Ослепление славой, тщеславие.", poem: "Светом высшим озари весь мир, / Или в гордыне потеряй ориентир.", cosmo: "Солнечная энергия, окончательное проявление." },
+            { char: "क", rus: "КА", stage: "Пространство", light: "Акаша, безграничность, творческий простор.", shadow: "Страх пустоты, внутренний вакуум, неприкаянность.", poem: "В пустоте найди созвездия миров, / Или страх запрёт тебя на сто замков.", cosmo: "Первый согласный. Рождение Эфира (Акаши). Начало физического мира." },
+            { char: "ख", rus: "КХА", stage: "Свобода", light: "Проницаемость, открытость новому, чистота восприятия.", shadow: "Расточительность, отсутствие границ, потеря себя.", poem: "Распахни окно для света и ветров, / Или растворишься, не имея берегов.", cosmo: "Буква означает 'небо' или 'отверстие'. Это возможность движения материи." },
+            { char: "ग", rus: "ГА", stage: "Движение", light: "Мудрость в пути, плавность, устранение препятствий.", shadow: "Бесцельность, лень, привязанность к дороге.", poem: "Путь твой освящен, преграды больше нет, / Или в праздности погаснет твой рассвет.", cosmo: "Энергия Ганеши. Звук, дающий импульс эволюции жизни." },
+            { char: "घ", rus: "ГХА", stage: "Плотность", light: "Упорство, созидательная мощь, основательность.", shadow: "Грубость, жестокость, материальное рабство.", poem: "Мощь свою вложи в надежный крепкий дом, / Или раздавишь всё жестоким кулаком.", cosmo: "Проявление тяжелых элементов. Формирование основ физических тел." },
+            { char: "ङ", rus: "НГА", stage: "Сокрытое", light: "Тайная мудрость, внутренний звук, интуиция.", shadow: "Иллюзия, самообман, туманность.", poem: "В тишине услышишь суть вещей, / Иль в обмане потеряешь весть.", cosmo: "Анахата-нада, неслышимый звук творения." },
+            { char: "च", rus: "ЧА", stage: "Мысль", light: "Подвижность ума, быстрота реакций, вдохновение.", shadow: "Ментальный хаос, сплетни, ветреность.", poem: "Мысли взлет быстрей, чем молнии стрела, / Или пустословие сожжет тебя дотла.", cosmo: "Элемент Воздуха. Рождение разума и способности различать." },
+            { char: "छ", rus: "ЧХА", stage: "Различение", light: "Проницательность, отсечение лишнего, острота ума.", shadow: "Язвительность, цинизм, разрушение тонкое.", poem: "Отсеки ненужное, чтоб видеть суть, / Иль резкость в слове изберешь свой путь.", cosmo: "Энергия рассечения неведения." },
+            { char: "ज", rus: "ДЖА", stage: "Жизнь", light: "Витальность, победа жизни, творческая плодовитость.", shadow: "Страсть, пожирающая душу, жажда обладания.", poem: "Жизни торжество в крови твоей поет, / Или страсти яд покой твой украдет.", cosmo: "Буква означает 'рождение'. Проявление дживы (души) в теле." },
+            { char: "झ", rus: "ДЖХА", stage: "Пыл", light: "Энтузиазм, вдохновляющий других, пламя сердца.", shadow: "Агрессия,
